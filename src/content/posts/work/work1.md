@@ -2,8 +2,8 @@
 title: 校园网上社区服务平台产品介绍
 published: 2025-4-7
 description: 整合校园生活服务、社交互动与智慧管理的全场景数字化平台(张国迅个人项目作业/创新创业课程)
-tags: [校园社交, 信息聚合, 数字校园, 学生服务]
-category: 产品文档
+tags: [work]
+category: 产品介绍
 draft: false
 ---
 
