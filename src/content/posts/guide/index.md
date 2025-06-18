@@ -1,7 +1,7 @@
 ---
-title: Simple Guides for Fuwari
+title: Fawari 发帖指南
 published: 2024-04-01
-description: "How to use this blog template."
+description: "Fawari发帖格式"
 image: "./cover.jpeg"
 tags: ["Fuwari", "Blogging", "Customization"]
 category: Guides
@@ -13,7 +13,6 @@ draft: false
 This blog template is built with [Astro](https://astro.build/). For the things that are not mentioned in this guide, you may find the answers in the [Astro Docs](https://docs.astro.build/).
 
 ## Front-matter of Posts
-
 ```yaml
 ---
 title: My First Blog Post
