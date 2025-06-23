@@ -2,7 +2,7 @@
 title: 算法学习Day1:牛客周赛97与做题总结
 published: 2025-06-23
 description: "记录牛客周赛97的参赛过程、6道题目分析及3道补充题目，包含算法思路和代码实现"
-image: "./cover.jpg"
+image: "./cover.png"
 tags: ["算法", "竞赛", "牛客", "编程"]
 category: Algorithm
 draft: false
