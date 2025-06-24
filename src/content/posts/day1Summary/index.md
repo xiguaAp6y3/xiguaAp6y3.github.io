@@ -222,32 +222,133 @@ https://ac.nowcoder.com/acm/contest/112078/E
 
 ### F题
 
-- **题目描述**：待补充
-- **解题思路**：待补充
+- **题目描述**：[小苯的序列分段](https://ac.nowcoder.com/acm/contest/112078/F)
+- **解题思路**：
 - **代码实现**：
-    ```cpp
-    // 代码实现待补充
-    ```
+```cpp
+#include <bits/stdc++.h>
+#define endl "\n"
+#define int long long
+const int N = 2e5 + 10;
+using namespace std;
+typedef long long  ll;
+const ll mod = 998244353;
+typedef pair<int,int> pii;
+int a[N];
+int b[N];
+void solve()
+{
+	int n,m;
+	cin>>n>>m;
+	bool flag3 = 0;
+	for(int i = 1;i<=n;i++)
+		cin>>a[i];
+	for(int i = 1;i<=m;i++)
+	{
+		cin>>b[i];
+		if(b[i]==n) flag3 = 1;} //特判
+	b[m+1] = 1e6;
+	if(!flag3) {cout<<0<<endl;return;}
+	bool flag = 0;
+	ll ans = 1ll;
+	int cnt = 1;
+	int temp = 1ll;
+	for(int i = 1;i<=n;i++)
+	{
+		if(!flag)
+		{
+			if(a[i]>b[cnt]) {cout<<0<<endl;return;}//如果还没找到 但a[i] 已经大于b[cnt] 那肯定为0
+			if(a[i]==b[cnt]) {flag = 1;continue;} 
+		}
+		if(flag)
+		{
+			if(a[i]==b[cnt+1]) {cnt++;ans*=temp;ans%=mod;temp = 1ll;continue;}//如果找着找着到了下一个那就把b[cnt] b[cnt+1] 中间的结算一下，flag也不用动
+			if(a[i]<b[cnt])
+			{temp++;// 如果当前这个数字比b[cnt]小 那就可以放到b[cnt] b[cnt+1]间
+				if(a[i]>b[cnt+1]) {temp = 1ll;continue;}//如果这个数比b[cnt+1] 还大，那只能放b[cnt]里边
+			}
+			if(a[i]>b[cnt]) {if((a[i]>b[cnt+1])) {cout<<0<<endl;return;}cnt++;ans*=temp;ans%=mod;flag = 0;temp = 1ll;i--;}
+			//如果这个数字大于b[cnt]但不大于b[cnt+1] 那这个数字的左边到a[cnt]都可以放左边或者右边，从这个数字往后就只能放右边。
+ 		}
+	}
+    if(!flag||cnt!=m) {cout<<0<<endl;return;} // 如果b数组在a没找全那就为0
+	cout<<ans<<endl;
+}
+signed main()
+{
+	ios::sync_with_stdio(false);
+	cin.tie(0),cout.tie(0);
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		solve();
+	}
+}
+```
 
 ## 补充题目
 
 ### 补充题1
 
-- **题目描述**：待补充
-- **解题思路**：待补充
+- **题目描述**：[枚举 · 例8扩展-校门外的树：hard](https://ac.nowcoder.com/acm/contest/20960/1010)
+- **解题思路**：合并区间
 - **代码实现**：
-    ```cpp
-    // 代码实现待补充
-    ```
+```cpp
+#include <bits/stdc++.h>
+#define int long long
+#define x first
+#define y second
+const int N = 1e5 + 10;
+using namespace std;
+int l,n;
+pair<int,int> pr[N];
+signed main()
+{
+    cin>>l>>n;
+    for(int i = 0;i<n;i++)
+        cin>>pr[i].x>>pr[i].y;
+    sort(pr,pr+n);
+    int ll=pr[0].x,rr=pr[0].y;
+    int res = 0;
+    pr[n].x = 1e9 + 10;
+    for(int i = 1;i<=n;i++)
+    {
+        if(pr[i].x>rr) {res+=rr-ll+1;ll = pr[i].x;rr =  pr[i].y;}
+        else {
+            rr = max(rr,pr[i].y);
+        }
+    }
+    cout<<l-res+1;
+}
+```
 
 ### 补充题2
 
-- **题目描述**：待补充
-- **解题思路**：待补充
+- **题目描述**：[机器翻译](https://ac.nowcoder.com/acm/contest/20960/1003)
+- **解题思路**：unordered_map 和 队列 使用
 - **代码实现**：
-    ```cpp
-    // 代码实现待补充
-    ```
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+	int m,n;
+	cin>>m>>n;
+	int cnt = 0;
+	unordered_map<string,int> mp;
+	queue<string> q;
+	for(int i = 0;i<n;i++)
+	{
+		string a;
+		cin>>a;
+		if(mp.count(a)==0) {
+			if(mp.size()==m) {mp.erase(q.front());q.pop();}
+				mp[a]++;cnt++;q.push(a);}
+	}
+	cout<<cnt;
+}
+```
 
 ### 补充题3
 
