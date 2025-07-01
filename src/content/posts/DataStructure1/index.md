@@ -2,7 +2,6 @@
 title: 数据结构基础笔记1
 published: 2025-06-23
 description: "数据结构基础知识学习，包括抽象数据类型、算法复杂度分析和渐进表示法"
-image: "./cover.jpg"
 tags: ["数据结构", "算法", "复杂度", "计算机基础"]
 category: DataStructure
 draft: false
