@@ -1,9 +1,9 @@
 ---
 title: 数据结构 - 堆栈
-published: 2024-07-06
+published: 2025-07-06
 description: "堆栈的抽象数据类型描述及其C语言实现"
-tags: ["数据结构", "堆栈", "Stack"]
-category: 数据结构
+tags: ["数据结构", "堆栈", "线性表", "链表"]
+category: DataStructure
 draft: false
 ---
 

@@ -1,8 +1,8 @@
 ---
-title: Java面向对象进阶
-published: 2024-07-06
+title: Java 静态 继承 学习笔记
+published: 2025-07-06
 description: "Java面向对象编程进阶知识，包括静态、继承等核心概念"
-tags: ["Java", "面向对象", "静态", "继承", "编程"]
+tags: ["Java", "面向对象", "静态", "继承"]
 category: Java
 draft: false
 ---
