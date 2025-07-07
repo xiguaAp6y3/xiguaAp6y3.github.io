@@ -1,5 +1,5 @@
 ---
-title: Java面向对象进阶笔记-多态
+title: Java 多态 学习笔记
 published: 2025-07-08
 description: "Java多态机制、类型转换、instanceof用法与实战代码"
 tags: ["Java", "多态", "面向对象进阶"]
@@ -88,6 +88,8 @@ Animal a = new Dog();
 ---
 
 ## 3. 多态实战代码
+
+![多态例题](./image-1.png)
 
 ### 3.1 例题代码
 
@@ -201,59 +203,3 @@ public class Main {
 
 ---
 *最后更新：2025年7月8日*
-        System.out.println(animal + animal.eat(something));
-    }
-
-    /**
-     * 获取
-     * @return name
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * 设置
-     * @param name
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * 获取
-     * @return age
-     */
-    public int getAge() {
-        return age;
-    }
-
-    /**
-     * 设置
-     * @param age
-     */
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String toString() {
-        return "年龄为"+ age + "岁的" + name;
-    }
-}
-//Main入口
-package ToObjectAdvanced.Polymorphism.P1;
-
-public class Main {
-    public static  void main(String [] args)
-    {
-        Animal a = new Dog(2,"黑");
-        Animal b = new Cat(3,"灰");
-        Person c = new Person("老王",30);
-        Person d = new Person("老李",25);
-        c.keepPet(a,"骨头");
-        d.keepPet(b,"鱼");
-    }
-}
-思考：
-1.多态 2.instanceof 强转 
-
