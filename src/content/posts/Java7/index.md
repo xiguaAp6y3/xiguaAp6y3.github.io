@@ -1,5 +1,5 @@
 ---
-title: Java 内部类笔记
+title: Java 内部类 笔记
 published: 2025-07-11
 description: "Java 内部类（成员、静态、局部、匿名）用法与示例"
 tags: ["Java", "内部类", "OOP"]
