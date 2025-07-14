@@ -7,7 +7,7 @@ category: Java
 draft: false
 ---
 
-# Java 泛型与集合框架笔记
+# Java 泛型 集合框架(一) 笔记
 
 > 日期：2025-07-14
 
