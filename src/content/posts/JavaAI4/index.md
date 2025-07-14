@@ -1,5 +1,5 @@
 ---
-title: Java 泛型与集合框架笔记
+title: Java 泛型 集合框架(一) 笔记
 published: 2025-07-14
 description: "Java泛型机制、包装类、Collection集合框架详解"
 tags: ["Java", "泛型", "集合框架", "Collection"]
