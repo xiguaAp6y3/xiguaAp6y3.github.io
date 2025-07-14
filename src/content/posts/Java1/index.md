@@ -39,14 +39,15 @@ public class array1 {
         
         list.remove(0); // 也可以按下标删除
         System.out.println(list); // []
-        
+        list.add(2,"aaa") // 在下标2后面加一个元素
+
         list.add("aaa"); // boolean 类型函数 成功 返回true
         System.out.println(list); // [aaa]
         
         String d = list.get(0); // aaa
         System.out.println(list.size()); // 1
         
-        list.set(0,"bbb");
+        list.set(0,"bbb");//修改
         System.out.println(list); // [bbb]
     }
 }

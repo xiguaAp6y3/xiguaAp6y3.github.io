@@ -17,6 +17,7 @@ draft: false
 - [接口实现案例](#接口实现案例)
 - [接口中成员的特点](#接口中成员的特点)
 - [接口和类之间的关系](#接口和类之间的关系)
+- [编写带有接口和抽象类的标准JavaBean类](#编写带有接口和抽象类的标准javabean类)
 - [接口新特性（JDK8/9）](#接口新特性jdk89)
 - [适配器设计模式](#适配器设计模式)
 - [总结](#总结)
@@ -185,40 +186,6 @@ public abstract class Coach extends Person {
 }
 ```
 
-**各具体类：**
-
-```java
-package Interface.P1;
-
-public class PingPongPlayer extends Player implements SpeakEnglish {
-    @Override
-    public void Learning() { System.out.println("学习打乒乓球"); }
-    @Override
-    public void speakEnglish() { System.out.println("说英语"); }
-    // ...构造方法...
-}
-
-public class PingPongCoach extends Coach implements SpeakEnglish {
-    @Override
-    public void Teaching() { System.out.println("教打乒乓球"); }
-    @Override
-    public void speakEnglish() { System.out.println("说英语"); }
-    // ...构造方法...
-}
-
-public class BasketballCoach extends Coach {
-    @Override
-    public void Teaching() { System.out.println("教打篮球"); }
-    // ...构造方法...
-}
-
-public class BasketballPlayer extends Player {
-    @Override
-    public void Learning() { System.out.println("学习打篮球"); }
-    // ...构造方法...
-}
-```
-
 **SpeakEnglish接口：**
 
 ```java
@@ -233,41 +200,60 @@ public interface SpeakEnglish {
 
 ## 接口新特性（JDK8/9）
 
-### JDK8
+### JDK8新特性
 
-- **默认方法**  
-  - 格式：`public default 返回值类型 方法名(参数列表) { }`
-  - 注意：不是抽象方法，不强制重写；重写时去掉`default`。
-  - 多接口冲突时，必须重写。
-- **静态方法**  
-  - 格式：`public static 返回值类型 方法名(参数列表) { }`
-  - 只能通过接口名调用，不能被重写。
+#### 1. 默认方法
+
+- 格式：`public default 返回值类型 方法名(参数列表) { }`
+- 注意事项：
+  1. 默认方法不是抽象方法，不强制重写，重写时去掉 `default` 关键字
+  2. `public` 可省略，`default` 不能省略
+  3. 多接口冲突时，子类必须重写
+
+```java
+public default void method() { System.out.println("1"); }
+```
+
+#### 2. 静态方法
+
+- 格式：`public static 返回值类型 方法名(参数列表) { }`
+- 注意事项：
+  - 无需重写，也不能被重写
+  - 只能通过接口名调用
+  - `public` 可省略，`static` 不能省略
 
 ```java
 public interface Any {
     public static void show() { System.out.println("show"); }
 }
+
 public class Any1 implements Any {
     public static void show() { System.out.println("Im showing"); }
 }
+// show方法并非重写，只是重名
+// 静态方法不会被添加到虚方法表
 ```
-> 注意：实现类的静态方法不是重写。
 
-### JDK9
+### JDK9新特性
 
-- **私有方法**  
-  - 只能在接口内部使用，辅助默认方法/静态方法复用代码。
+#### 私有方法
+
+- 只能在接口内部使用，用于代码复用
 
 ```java
 public interface InterA {
     private void show3() { System.out.println("only"); }
+    
     public default void show1() {
         System.out.println("...");
         show3();
+        System.out.println("...");
     }
+    
     public default void show2() {
         System.out.println("...");
         show3();
+        System.out.println("...");
     }
 }
 ```
@@ -276,173 +262,28 @@ public interface InterA {
 
 ## 适配器设计模式
 
-- 当一个接口中抽象方法过多，但只需用部分时，可用适配器设计模式。
-- 步骤：
-  1. 编写中间类`XXXAdapter`，实现接口
-  2. 对接口中抽象方法空实现
-  3. 真正实现类继承中间类并重写需要用的方法
-  4. 适配器类用`abstract`修饰，避免被直接实例化
+### 使用场景
+当一个接口中抽象方法过多，但只需要使用其中一部分时，可以使用适配器设计模式。
+
+### 实现步骤
+1. 编写中间类 `XXXAdapter`，实现对应的接口
+2. 对接口中的抽象方法进行空实现
+3. 让真正的实现类继承中间类，并重写需要用的方法
+4. 中间适配器类用 `abstract` 修饰，避免被直接实例化
 
 ---
 
 ## 总结
 
-1. 接口代表规则，是行为的抽象。想让哪个类拥有某行为，让其实现对应接口即可。
-2. 当方法参数是接口时，可以传递接口所有实现类对象，这称为接口多态。
-        System.out.println("说英语");
-    }
+1. **接口的作用**  
+   接口代表规则，是行为的抽象。想要让哪个类拥有一个行为，就让这个类实现对应的接口。
 
-    public PingPongPlayer() {
-    }
+2. **接口多态**  
+   当一个方法的参数是接口时，可以传递接口所有实现类的对象，这种方式称为接口多态。
 
-    public PingPongPlayer(String name, int age) {
-        super(name, age);
-    }
-}
+3. **接口新特性**  
+   - JDK8：默认方法、静态方法
+   - JDK9：私有方法
 
-package Interface.P1;
-
-public class PingPongCoach extends Coach implements SpeakEnglish{
-
-    @Override
-    public void Teaching() {
-        System.out.println("教打乒乓球");
-    }
-
-    @Override
-    public void speakEnglish() {
-        System.out.println("说英语");
-    }
-
-    public PingPongCoach() {
-    }
-
-    public PingPongCoach(String name, int age) {
-        super(name, age);
-    }
-}
-
-package Interface.P1;
-
-public class BasketballCoach extends Coach{
-
-    @Override
-    public void Teaching() {
-        System.out.println("教打篮球");
-    }
-
-    public BasketballCoach() {
-    }
-
-    public BasketballCoach(String name, int age) {
-        super(name, age);
-    }
-}
-
-package Interface.P1;
-
-public class BasketballPlayer extends Player {
-
-    @Override
-    public void Learning() {
-        System.out.println("学习打篮球");
-    }
-
-    public BasketballPlayer() {
-    }
-
-    public BasketballPlayer(String name, int age) {
-        super(name, age);
-    }
-}
-
-还有一个说英语的接口
-package Interface.P1;
-
-public interface SpeakEnglish {
-    public void speakEnglish();
-}
-
-
-接口拓展
-
-JDK8新特性
-
-1.可定义有方法体的默认方法
-# 接口中默认方法的定义格式
-格式：`public default 返回值类型 方法名(参数列表) { }`
-
-# 接口中默认方法的注意事项
-1. 默认方法不是抽象方法，所以不强制被重写。但是如果被重写，重写的时候去掉 `default` 关键字
-2. `public` 可以省略，`default` 不能省略
-3. 如果实现了多个接口，多个接口中存在相同名字的默认方法，子类就必须对该方法进行重写
-在接口中定义->
-`public(可省) default void method(){sout("1");}`
-//不强制要求实现该接口的类重写method方法
-
-2.允许在接口中定义静态方法，需要static修饰
-# 接口中静态方法的定义格式：
-- 格式：`public static` 返回值类型 方法名(参数列表){ }
-- 范例：`public static void show(){ }`
-
-# 接口中静态方法的注意事项：
-- 无需重写,而且不能被重写
-- 静态方法只能通过接口名调用，不能通过实现类名或者对象名调用
-- `public`可以省略，`static`不能省略
-public interface any{
-public static void show(){sout("show");}
-}
-但是需要注意，比如
-public class any1 implements any
-{
-    public static void show()
-    {
-        sout("Im showing");
-    }
-} 
-//show方法并非重写，只是重名
-//静态方法不会被添加到虚方法表;
-
-JDK9新特性
-可定义接口中的私有方法,只用于接口内使用
-public interface InterA
-{
-    /*public default void show3()
-    {
-sout("only");
-    }*/
-    //上文用于java8
-    private void show3()
-    {
-        sout("only");
-    }//java9+
-    public default void show1()
-    {
-        sout("...");
-        show3();
-        sout("...");
-        sout("...");
-    }
-    public default void show2()
-    {
-        sout("...");
-        show3();
-        sout("...");
-        sout("...");
-    }
-}
-
-### 总结
-
-1. 接口代表规则，是行为的抽象。想要让哪个类拥有一个行为，就让这个类实现对应的接口就可以了。
-2. 当一个方法的参数是接口时，可以传递接口所有实现类的对象，这种方式称之为接口多态。
-
-
-适配器设计模式
-# 总结
-1. 当一个接口中抽象方法过多，但是我只要使用其中一部分的时候，就可以适配器设计模式
-2. 书写步骤：
-   - 编写中间类`XXXAdapter`，实现对应的接口
-   - 对接口中的抽象方法进行空实现
-   - 让真正的实现类继承中间类，并重写需要用的方法
-   - 为了避免其他类创建适配器类的对象，中间的适配器类用`abstract`进行修饰
+4. **适配器模式**  
+   用于简化接口实现，避免实现不需要的方法。
