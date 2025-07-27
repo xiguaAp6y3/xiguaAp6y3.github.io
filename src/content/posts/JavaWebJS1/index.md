@@ -1,5 +1,5 @@
 ---
-title: JavaWeb JavaScript 笔记（一）
+title: JavaWeb JavaScript 笔记
 published: 2025-07-26
 description: "JavaScript基础语法、DOM操作、事件监听详解"
 tags: ["Web", "JavaScript", "DOM", "事件监听"]
@@ -7,7 +7,7 @@ category: Web
 draft: false
 ---
 
-# JavaWeb JavaScript 笔记（一）
+# JavaWeb JavaScript 笔记
 
 > 日期：2025-07-26
 
