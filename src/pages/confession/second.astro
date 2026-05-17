@@ -60,11 +60,10 @@ const bgMusic = '/confession-assets/bgm.mp3'
   </head>
   <body style={`--confession-bg-image: url(${bgImage});`}>
     <main class="card">
-      <h1>你是我想认真喜欢的人 ❤️</h1>
-      <p>这个页面专门留给你，背景图、照片和音乐都可以按你的素材替换。</p>
+      <h1>恭喜解锁情人节奶龙［可攻略］</h1>
       <img class="photo" src={heroImage} alt="我们的照片" loading="lazy" />
       <audio src={bgMusic} loop controls aria-label="背景音乐播放器">您的浏览器不支持音频播放。</audio>
-      <p class="note">把素材放到 public/confession-assets/ 下即可（bg.jpg / photo.jpg / bgm.mp3）。</p>
+      <p class="note">奶农正在深情告白</p>
     </main>
     <script is:inline define:vars={{ CONFESSION_SESSION_KEY }}>
       if (sessionStorage.getItem(CONFESSION_SESSION_KEY) !== 'granted') {
