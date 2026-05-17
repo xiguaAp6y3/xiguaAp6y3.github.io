@@ -62,7 +62,7 @@ const bgMusic = '/confession-assets/bgm.mp3'
     <main class="card">
       <h1>恭喜解锁情人节奶龙［可攻略］</h1>
       <img class="photo" src={heroImage} alt="我们的照片" loading="lazy" />
-      <audio src={bgMusic} loop controls aria-label="背景音乐播放器">您的浏览器不支持音频播放。</audio>
+      <audio src={bgMusic} loop controls preload="metadata" aria-label="背景音乐播放器">您的浏览器不支持音频播放。</audio>
       <p class="note">奶农正在深情告白</p>
     </main>
     <script is:inline define:vars={{ CONFESSION_SESSION_KEY }}>
