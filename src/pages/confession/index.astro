@@ -1,4 +1,6 @@
 ---
+import { CONFESSION_SESSION_KEY } from '@/constants/confession'
+
 const nextPage = '/confession/second/'
 ---
 
@@ -87,7 +89,7 @@ const nextPage = '/confession/second/'
       </div>
     </main>
 
-    <script is:inline define:vars={{ nextPage }}>
+    <script is:inline define:vars={{ nextPage, CONFESSION_SESSION_KEY }}>
       const input = document.getElementById('chat-input')
       const button = document.getElementById('send-btn')
       const tip = document.getElementById('tip')
@@ -95,7 +97,7 @@ const nextPage = '/confession/second/'
       const goNext = () => {
         const value = input?.value?.trim()
         if (value === '520') {
-          sessionStorage.setItem('confession-pass', 'granted')
+          sessionStorage.setItem(CONFESSION_SESSION_KEY, 'granted')
           window.location.href = nextPage
           return
         }
@@ -104,7 +106,10 @@ const nextPage = '/confession/second/'
 
       button?.addEventListener('click', goNext)
       input?.addEventListener('keydown', event => {
-        if (event.key === 'Enter') goNext()
+        if (event.key === 'Enter') {
+          event.preventDefault()
+          goNext()
+        }
       })
     </script>
   </body>
