@@ -44,6 +44,9 @@ const nextPage = '/confession/second/'
         display: grid;
         gap: 10px;
       }
+      label {
+        font-size: 0.95rem;
+      }
       input {
         width: 100%;
         border: 1px solid #f3b8cd;
@@ -77,6 +80,7 @@ const nextPage = '/confession/second/'
       <h1>给你一个小入口 💌</h1>
       <p>在聊天框输入正确数字，就会进入第二界面。</p>
       <div class="chat">
+        <label for="chat-input">聊天输入框</label>
         <input id="chat-input" type="text" placeholder="请输入数字" autocomplete="off" />
         <button id="send-btn" type="button">发送</button>
         <p id="tip" aria-live="polite"></p>
@@ -91,6 +95,7 @@ const nextPage = '/confession/second/'
       const goNext = () => {
         const value = input?.value?.trim()
         if (value === '520') {
+          sessionStorage.setItem('confession-pass', 'granted')
           window.location.href = nextPage
           return
         }
