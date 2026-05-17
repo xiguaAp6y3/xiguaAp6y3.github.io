@@ -1,0 +1,68 @@
+---
+const bgImage = '/confession-assets/bg.jpg'
+const heroImage = '/confession-assets/photo.jpg'
+const bgMusic = '/confession-assets/bgm.mp3'
+---
+
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>只给你的页面</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        font-family: 'PingFang SC', 'Microsoft YaHei', system-ui, -apple-system,
+          sans-serif;
+        color: #fff;
+        background:
+          linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+          url('/confession-assets/bg.jpg') center / cover no-repeat,
+          linear-gradient(135deg, #ff7aa2, #ffa4c1 45%, #ffc7d9);
+      }
+      .card {
+        width: min(92vw, 760px);
+        text-align: center;
+        background: rgba(0, 0, 0, 0.35);
+        backdrop-filter: blur(2px);
+        border-radius: 20px;
+        padding: 30px 24px;
+      }
+      h1 {
+        margin: 0 0 10px;
+        font-size: clamp(1.5rem, 3vw, 2rem);
+      }
+      p {
+        margin: 0 0 18px;
+        line-height: 1.7;
+      }
+      .photo {
+        width: min(75vw, 340px);
+        aspect-ratio: 4 / 5;
+        object-fit: cover;
+        border-radius: 16px;
+        border: 2px solid rgba(255, 255, 255, 0.7);
+      }
+      .note {
+        margin-top: 12px;
+        font-size: 0.95rem;
+        opacity: 0.9;
+      }
+    </style>
+  </head>
+  <body style={`background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url(${bgImage}), linear-gradient(135deg, #ff7aa2, #ffa4c1 45%, #ffc7d9);`}>
+    <main class="card">
+      <h1>你是我想认真喜欢的人 ❤️</h1>
+      <p>这个页面专门留给你，背景图、照片和音乐都可以按你的素材替换。</p>
+      <img class="photo" src={heroImage} alt="我们的照片" loading="lazy" />
+      <audio src={bgMusic} autoplay loop controls></audio>
+      <p class="note">把素材放到 public/confession-assets/ 下即可（bg.jpg / photo.jpg / bgm.mp3）。</p>
+    </main>
+  </body>
+</html>
