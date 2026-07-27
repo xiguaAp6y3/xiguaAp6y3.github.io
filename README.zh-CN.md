@@ -1,59 +1,108 @@
-# 🍥Fuwari
+# XiGuaAp6y3 Blog
 
-基于 [Astro](https://astro.build) 开发的静态博客模板。
+这是一个基于 [Astro](https://astro.build) 和 Tailwind CSS 构建的个人博客，用于整理 Java、数据结构、JavaWeb、人工智能等学习笔记。
 
-[**🖥️在线预览（Vercel）**](https://fuwari.vercel.app)&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;
-[**📦旧 Hexo 版本**](https://github.com/saicaca/hexo-theme-vivia)
+## 功能
 
-> README 版本：`2024-09-10`
+- 响应式博客布局，支持桌面端和移动端
+- 亮色、暗色模式和主题色切换
+- 文章归档、分类、标签和站内搜索
+- Markdown、数学公式、代码高亮和图片查看
+- 固定顶部导航栏和文章目录
+- 基于 GitHub Discussions 的 Giscus 评论
+- RSS、站点地图和静态页面部署
 
-![Preview Image](https://raw.githubusercontent.com/saicaca/resource/main/fuwari/home.png)
+## 快速开始
 
-## ✨ 功能特性
+项目需要 Node.js 和 pnpm。
 
-- [x] 基于 Astro 和 Tailwind CSS 开发
-- [x] 流畅的动画和页面过渡
-- [x] 亮色 / 暗色模式
-- [x] 自定义主题色和横幅图片
-- [x] 响应式设计
-- [ ] 评论
-- [x] 搜索
-- [ ] 文内目录
+```bash
+pnpm install
+pnpm dev
+```
 
-## 🚀 使用方法
+开发服务器默认运行在 `http://localhost:4321`。
 
-1. 使用此模板[生成新仓库](https://github.com/saicaca/fuwari/generate)或 Fork 此仓库
-2. 进行本地开发，Clone 新的仓库，执行 `pnpm install` 和 `pnpm add sharp` 以安装依赖  
-   - 若未安装 [pnpm](https://pnpm.io)，执行 `npm install -g pnpm`
-3. 通过配置文件 `src/config.ts` 自定义博客
-4. 执行 `pnpm new-post <filename>` 创建新文章，并在 `src/content/posts/` 目录中编辑
-5. 参考[官方指南](https://docs.astro.build/zh-cn/guides/deploy/)将博客部署至 Vercel, Netlify, GitHub Pages 等；部署前需编辑 `astro.config.mjs` 中的站点设置。
+常用命令：
 
-## ⚙️ 文章 Frontmatter
+| 命令 | 作用 |
+| --- | --- |
+| `pnpm dev` | 启动开发服务器 |
+| `pnpm build` | 构建生产文件到 `dist/` |
+| `pnpm preview` | 预览生产构建结果 |
+| `pnpm type-check` | 执行 TypeScript 检查 |
+| `pnpm new-post <name>` | 创建新文章 |
+| `pnpm format` | 格式化源码 |
+| `pnpm lint` | 检查并修复源码格式 |
+
+## 项目配置
+
+网站基本信息、导航栏、个人资料、主题和许可证配置位于：
+
+```text
+src/config.ts
+```
+
+修改 `siteConfig`、`navBarConfig` 和 `profileConfig` 即可更新网站内容和导航。
+
+## 创建文章
+
+文章放在 `src/content/posts/` 下，每篇文章使用一个目录和 `index.md` 文件：
+
+```text
+src/content/posts/example/index.md
+```
+
+文章必须包含以下 frontmatter：
 
 ```yaml
 ---
-title: My First Blog Post
-published: 2023-09-09
-description: This is the first post of my new Astro blog.
+title: 示例文章
+published: 2026-07-27
+description: 文章简介
 image: ./cover.jpg
-tags: [Foo, Bar]
-category: Front-end
+tags: [Java, 学习笔记]
+category: Java
 draft: false
-lang: jp      # 仅当文章语言与 `config.ts` 中的网站语言不同时需要设置
 ---
 ```
 
-## 🧞 指令
+将 `draft` 设置为 `true` 的文章不会在生产环境中显示。
 
-下列指令均需要在项目根目录执行：
+## Giscus 评论
 
-| Command                           | Action                            |
-|:----------------------------------|:----------------------------------|
-| `pnpm install` 并 `pnpm add sharp` | 安装依赖                              |
-| `pnpm dev`                        | 在 `localhost:4321` 启动本地开发服务器      |
-| `pnpm build`                      | 构建网站至 `./dist/`                   |
-| `pnpm preview`                    | 本地预览已构建的网站                        |
-| `pnpm new-post <filename>`        | 创建新文章                             |
-| `pnpm astro ...`                  | 执行 `astro add`, `astro check` 等指令 |
-| `pnpm astro --help`               | 显示 Astro CLI 帮助                   |
+评论使用 GitHub Discussions，不需要 OAuth Secret。仓库需要公开，并在 GitHub 仓库中开启 Discussions，然后通过 [giscus.app](https://giscus.app/zh-CN) 获取配置。
+
+复制 `.env.example` 为 `.env`，按需填写：
+
+```env
+PUBLIC_GISCUS_REPO=xiguaAp6y3/xiguaAp6y3.github.io
+PUBLIC_GISCUS_REPO_ID=R_kgDOOOOaXQ
+PUBLIC_GISCUS_CATEGORY=Announcements
+PUBLIC_GISCUS_CATEGORY_ID=DIC_kwDOOOOaXc4DCDoK
+```
+
+Giscus 使用页面 URL 将文章与对应的 Discussion 关联。仓库 ID 和分类 ID 可以公开，不属于敏感信息。
+
+## 目录结构
+
+```text
+src/
+├─ components/       页面组件
+├─ content/posts/    博客文章
+├─ layouts/          页面布局
+├─ pages/            Astro 路由
+├─ plugins/          Markdown 插件
+├─ styles/           全局样式
+└─ config.ts         网站配置
+public/              静态资源
+astro.config.mjs     Astro 配置
+```
+
+## 部署
+
+执行 `pnpm build` 生成静态文件，然后将 `dist/` 部署到 GitHub Pages、Vercel、Netlify 等静态托管平台。部署 GitHub Pages 时，请确保构建环境可以读取 `.env` 中的 Giscus 配置。
+
+## 许可证
+
+博客内容仅用于学习交流。项目基于开源博客模板构建，具体许可信息以仓库中的 `LICENSE` 文件为准。

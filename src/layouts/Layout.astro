@@ -442,6 +442,44 @@ window.onresize = () => {
 
 </script>
 
+<script is:inline>
+function renderGiscus() {
+	const container = document.querySelector('[data-giscus-container]')
+	if (!container || container.querySelector('.giscus')) return
+
+	const script = document.createElement('script')
+	script.src = 'https://giscus.app/client.js'
+	script.async = true
+	script.crossOrigin = 'anonymous'
+	script.dataset.repo = container.dataset.giscusRepo
+	script.dataset.repoId = container.dataset.giscusRepoId
+	script.dataset.category = container.dataset.giscusCategory
+	script.dataset.categoryId = container.dataset.giscusCategoryId
+	script.dataset.mapping = 'url'
+	script.dataset.strict = '0'
+	script.dataset.reactionsEnabled = '1'
+	script.dataset.emitMetadata = '0'
+	script.dataset.inputPosition = 'bottom'
+	script.dataset.theme = 'light'
+	script.dataset.lang = 'zh-CN'
+	container.appendChild(script)
+}
+
+function setupGiscus() {
+	renderGiscus()
+	if (window.swup?.hooks) {
+		window.swup.hooks.on('page:view', renderGiscus)
+	}
+}
+
+if (document.readyState === 'loading') {
+	document.addEventListener('DOMContentLoaded', setupGiscus, { once: true })
+} else {
+	setupGiscus()
+}
+document.addEventListener('swup:enable', setupGiscus, { once: true })
+</script>
+
 <script>
 import PhotoSwipeLightbox from "photoswipe/lightbox"
 import "photoswipe/style.css"
